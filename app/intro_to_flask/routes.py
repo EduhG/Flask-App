@@ -1,5 +1,5 @@
 from intro_to_flask import app
-from flask import render_template, request, flash
+from flask import render_template, request, flash, session
 from forms import ContactForm, SignupForm
 from flask.ext.mail import Message, Mail
 from models import db
@@ -55,6 +55,12 @@ def signup():
         if form.validate() == False:
             return render_template('signup.html', form=form)
         else:
+            newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
+            db.session.add(newuser)
+            db.session.commit()
+
+            session['email'] = newuser.email
+
             return "[1] Create a new user [2] sign in the user [3] redirect to the user's profile"
 
     elif request.method == 'GET':

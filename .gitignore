@@ -1,3 +1,4 @@
 /.idea
 /flaskapp/
 /app/config.cfg
+/app/flaskapp/*.pyc

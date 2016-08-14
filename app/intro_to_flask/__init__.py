@@ -15,3 +15,9 @@ from routes import mail
 mail.init_app(app)
 
 import intro_to_flask.routes
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:mtotooh@localhost/development'
+
+from models import db
+
+db.init_app(app)
